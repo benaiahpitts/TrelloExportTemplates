@@ -1,0 +1,10 @@
+{
+    "templates": [
+        {
+            "name": "SWEPT",
+            "url": "https://dev-d.fla-etat.org/est/twig/swept.twig",
+            "description": "SWEPT Export",
+            "css": "https://dev-d.fla-etat.org/est/style/bootstrap.min.css"
+        }
+    ]
+}
