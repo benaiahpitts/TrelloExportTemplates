@@ -14,7 +14,7 @@
 <body class="TrelloExport">
 	<nav class="navbar navbar-swept navbar-fixed-top">
 		<div class="navbar-accent" style="display: flex; align-items: center; justify-content: space-between;">
-			<strong>TrelloExport > {% data.cards[0].card.organizationName %} > {% data.cards[0].card.boardName %}</strong>
+			<strong>TrelloExport > </strong>
 		</div>		
     
       		<header class="container-fluid">
@@ -31,6 +31,8 @@
 			</div>
 			
 			<div id="main-content" class="col-lg-10 col-lg-offset-2">
+			{% data.cards %} > {% data.cards|first %}
+			
 {% set organizationName = '' %}
 {% set boardName = '' %}
 {% set prevList = '' %}
