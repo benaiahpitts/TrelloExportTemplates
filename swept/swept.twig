@@ -12,23 +12,23 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
 </head>
 <body class="TrelloExport">
-     <nav class="navbar navbar-swept navbar-fixed-top">
-		<div class="navbar-accent" style="display: flex; align-items: center; justify-content: space-between;"></div>		
+	<nav class="navbar navbar-swept navbar-fixed-top">
+		<div class="navbar-accent" style="display: flex; align-items: center; justify-content: space-between;">
+			<strong>TrelloExport - SWEPT</strong>
+		</div>		
     
-      	<header class="container-fluid">
-      		<div class="navbar-header">
+      		<header class="container-fluid">
+      			<div class="navbar-header">
 	        	     <h1 class="navbar-brand">StateWide Environmental Project Tracker</h1>
 			</div>
-        	     <div id="navbar" class="navbar-collapse collapse" style="max-height: 90vh">
-        		
-	           </div>
-     	</header>
-    	
-    </nav>
+     		</header>
+	</nav>
 
 	<div class="container-fluid">
 		<div class="row main-container">
-			<div id="sidebar" class="hidden-md hidden-sm hidden-xs col-lg-2 sidebar collapse in"></div>
+			<div id="sidebar" class="hidden-md hidden-sm hidden-xs col-lg-2 sidebar collapse in">
+				<div class="logo-container"><a href="Landing.do"><img src="/est/images/swept/swept.png" alt="SWEPT" /></a></div>
+			</div>
 			
 			<div id="main-content" class="col-lg-10 col-lg-offset-2">
 {% set organizationName = '' %}
@@ -36,72 +36,22 @@
 {% set prevList = '' %}
 {% for card in data.cards %}
      {% if card.boardName != boardName %}
-        <h1>{{ card.organizationName }} &gt;&gt; {{ card.boardName }}</h1>
+        <h2>{{ card.organizationName }} &gt;&gt; {{ card.boardName }}</h2>
     {% endif %}
     {% set boardName = card.boardName %}
     {% set organizationName = card.organizationName %}
     {% set curList = card.listName %}
     {% if prevList != curList %}
-        <h2>{{ curList }}</h2>
+        <h3>{{ curList }}</h3>
     {% endif %}
     {% set prevList = card.listName %}
     <div class="card">
-        <h3><a href="{{ card.shortLink }}">{{ card.title }}</a></h3>        
-        <div class="row">
-        <div class="col-md-3">
-            <div class="info">
-                <span class="label">Created:</span>
-                <span class="text">{{ card.datetimeCreated }}</span>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="info">
-                <span class="label">Created By:</span>
-                <span class="text">{{ card.memberCreator }}</span>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="info">
-                <span class="label">Due:</span>
-                <span class="text">{{ card.due }}</span>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="info">
-                <span class="label">Completed:</span>
-                {% if card.dueComplete %}
-                <span class="text"><input type="checkbox" disabled checked></span>
-                {% else %}
-                <span class="text"><input type="checkbox" disabled></span>
-                {% endif %}
-            </div>
-        </div>
-        </div>
+        <h4><a href="{{ card.shortLink }}">{{ card.title }}</a></h4>        
         <div class="description">
             <span class="label">Description:</span>
             <p class="text">{{ card.cardDescription }}</p>
         </div>
-        {% if card.jsonLabels|length > 0 %}
-        <div class="labels">
-            <span class="label"><i class="fas fa-tags"></i> Labels ({{ card.jsonLabels|length }}):</span>
-            {% for label in card.jsonLabels %}
-                <span class="label"><i class="fas fa-tag"></i> <span>{{ label.name }}</span></span>
-            {% endfor %}
-        </div>
-        {% endif %}
-        {% if card.jsonAttachments|length > 0 %}
-        <div class="attachments">
-            <span class="label"><i class="fa fa-paperclip"></i> Attachments ({{ card.jsonAttachments|length }}):</span>
-            {% for attach in card.jsonAttachments %}
-            <div class="attachment">
-                <span class="label"><i class="fa fa-paperclip"></i> <a href="{{ attach.url }}">{{ attach.name }}</a>{% if attach.isUpload%} {{ attach.bytes|number_format }} kb{% endif %}</span>
-                {% if attach.previews|length > 0 %}
-                <p><img src="{{ attach.previews|last.url }}" /></p>
-                {% endif %}
-            </div>
-            {% endfor %}
-        </div>
-        {% endif %}
+       
         {% if card.numberOfComments > 0 %}
         <div class="comments">
             <span class="label"><i class="fa fa-comments"></i> Comments ({{ card.numberOfComments }}):</span>
@@ -128,29 +78,19 @@
             {% endfor %}
         </div>
         {% endif %}
-        {% if card.customFields|length > 0 %}
-        <div class="customFields">
-            <span class="label"><i class="fa fa-cubes"></i> CustomFields ({{ card.customFields|length }}):</span>
-            {% for field in card.customFields %}
-            <div class="customField">
-                <span class="label"><i class="fa fa-cube"></i> {{ field.name }}:</span>
-                <span class="text">{{ field.value }}</span>
-            </div>
-            {% endfor %}
-        </div>
-        {% endif %}
+        
     </div>
 {% endfor %}
-</div>
 		</div>
-		<footer class="well well-lg">
-			<div class="row">
-				<div class="col-lg-10 col-lg-offset-2">
-					<a href="http://www.fdot.gov/"><img src="/est/images/swept/FDOT_Logo_color_transparent.png" alt="Florida Department of Transporation Logo" /></a>
-					<p><strong>Copyright &copy;2018 Florida Department of Transportation All Rights Reserved</strong><br />
-					<small>For additional information, please e-mail questions or comments to Florida Department of Transportation Office of Environmental Management (OEM) <a href="mailto:swept@fla-etat.org">swept@fla-etat.org</a> or call <a href="tel: 8504145334">850-414-5334</a></small>.
-				</div>
+	</div>
+	<footer class="well well-lg">
+		<div class="row">
+			<div class="col-lg-10 col-lg-offset-2">
+				<a href="http://www.fdot.gov/"><img src="/est/images/swept/FDOT_Logo_color_transparent.png" alt="Florida Department of Transporation Logo" /></a>
+				<p><strong>Copyright &copy;2018 Florida Department of Transportation All Rights Reserved</strong><br />
+				<small>For additional information, please e-mail questions or comments to Florida Department of Transportation Office of Environmental Management (OEM) <a href="mailto:swept@fla-etat.org">swept@fla-etat.org</a> or call <a href="tel: 8504145334">850-414-5334</a></small>.
 			</div>
-		</footer>
+		</div>
+	</footer>
 </body>
 </html>
