@@ -18,7 +18,7 @@
 
 	<nav class="navbar navbar-swept navbar-fixed-top">
 		<div class="navbar-accent" style="display: flex; align-items: center; justify-content: space-between;">
-			<strong>TrelloExport &gt; {% for card in data.cards %}{% if card.boardName != boardName %}{{ card.organizationName }} &gt; {{ card.boardName }}{% endif %}{% endfor %}</strong>
+			<strong>TrelloExport &gt; {% for card in data.cards %}{% if card.boardName != boardName %}{{ card.organizationName }} &gt; {{ card.boardName }}{% set boardName = card.boardName %}{% endif %}{% endfor %}</strong>
 		</div>		
     
       		<header class="container-fluid">
@@ -57,7 +57,7 @@
             <h4><i class="fa fa-comments"></i> Comments ({{ card.numberOfComments }}):</h4>
             {% for comment in card.jsonComments %}
             <div class="comment">
-                <span class="label"><i class="far fa-comments"></i> {{ comment.date }} - {{ comment.memberCreator.fullName }}</span>
+                <strong>{{ comment.memberCreator.fullName }}:</strong><br />
                 <span class="text">{{ comment.text }}</span>
             </div>
             {% endfor %}
@@ -72,7 +72,7 @@
                 <span class="label"><i class="fa fa-list"></i> {{ clist.name }} ({{ clist.items|length }} items)</span>
                 <ul>
                 {% for item in clist.items %}
-                <li>{{ item.name }} <span class="completed">{% if item.completed%}<i class="far fa-check-square"></i> {% if item.completedBy %}{{ item.completedBy }}, {% endif %}{{ item.completedDate }}{% else %}<i class="far fa-square"></i>{% endif %}</span></li>
+                <li> <span class="completed">{% if item.completed%}<i class="far fa-check-square"></i>{% else %}<i class="far fa-square"></i>{% endif %}</span> {{ item.name }}{% if item.completed%} - {% if item.completedBy %}{{ item.completedBy }}, {% endif %}{{ item.completedDate }}{% endif %}</li>
                 {% endfor %}
                 </ul>
             </div>
