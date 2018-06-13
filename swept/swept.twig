@@ -14,7 +14,7 @@
 <body class="TrelloExport">
 	<nav class="navbar navbar-swept navbar-fixed-top">
 		<div class="navbar-accent" style="display: flex; align-items: center; justify-content: space-between;">
-			<strong>TrelloExport - SWEPT</strong>
+			<strong>TrelloExport > {% data.cards[0].organizationName %} > {% data.cards[0].boardName %}</strong>
 		</div>		
     
       		<header class="container-fluid">
@@ -35,26 +35,26 @@
 {% set boardName = '' %}
 {% set prevList = '' %}
 {% for card in data.cards %}
-     {% if card.boardName != boardName %}
+     <!-- {% if card.boardName != boardName %}
         <h2>{{ card.organizationName }} &gt;&gt; {{ card.boardName }}</h2>
-    {% endif %}
+    {% endif %} -->
     {% set boardName = card.boardName %}
     {% set organizationName = card.organizationName %}
     {% set curList = card.listName %}
     {% if prevList != curList %}
-        <h3>{{ curList }}</h3>
+        <h2>{{ curList }}</h2>
     {% endif %}
     {% set prevList = card.listName %}
     <div class="card">
-        <h4><a href="{{ card.shortLink }}">{{ card.title }}</a></h4>        
+        <h3><a href="{{ card.shortLink }}">{{ card.title }}</a></h3>        
         <div class="description">
-            <span class="label">Description:</span>
+            <h4>Description:</h4>
             <p class="text">{{ card.cardDescription }}</p>
         </div>
        
         {% if card.numberOfComments > 0 %}
         <div class="comments">
-            <span class="label"><i class="fa fa-comments"></i> Comments ({{ card.numberOfComments }}):</span>
+            <h4><i class="fa fa-comments"></i> Comments ({{ card.numberOfComments }}):</h4>
             {% for comment in card.jsonComments %}
             <div class="comment">
                 <span class="label"><i class="far fa-comments"></i> {{ comment.date }} - {{ comment.memberCreator.fullName }}</span>
@@ -63,9 +63,10 @@
             {% endfor %}
         </div>
         {% endif %}
+	
         {% if card.jsonCheckLists|length > 0 %}
         <div class="checklists">
-            <span class="label"><i class="fa fa-list-alt"></i> Checklists ({{ card.jsonCheckLists|length }}):</span>
+            <h4><i class="fa fa-list-alt"></i> Checklists ({{ card.jsonCheckLists|length }}):</h4>
             {% for clist in card.jsonCheckLists %}
             <div class="checklist">
                 <span class="label"><i class="fa fa-list"></i> {{ clist.name }} ({{ clist.items|length }} items)</span>
