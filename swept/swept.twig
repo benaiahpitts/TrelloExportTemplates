@@ -12,6 +12,25 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
 </head>
 <body class="TrelloExport">
+     <nav class="navbar navbar-swept navbar-fixed-top">
+		<div class="navbar-accent" style="display: flex; align-items: center; justify-content: space-between;"></div>		
+    
+      	<header class="container-fluid">
+      		<div class="navbar-header">
+	        	     <h1 class="navbar-brand">StateWide Environmental Project Tracker</h1>
+			</div>
+        	     <div id="navbar" class="navbar-collapse collapse" style="max-height: 90vh">
+        		
+	           </div>
+     	</header>
+    	
+    </nav>
+
+	<div class="container-fluid">
+		<div class="row main-container">
+			<div id="sidebar" class="hidden-md hidden-sm hidden-xs col-lg-2 sidebar collapse in"></div>
+			
+			<div id="main-content" class="col-lg-10 col-lg-offset-2">
 {% set organizationName = '' %}
 {% set boardName = '' %}
 {% set prevList = '' %}
@@ -122,5 +141,16 @@
         {% endif %}
     </div>
 {% endfor %}
+</div>
+		</div>
+		<footer class="well well-lg">
+			<div class="row">
+				<div class="col-lg-10 col-lg-offset-2">
+					<a href="http://www.fdot.gov/"><img src="/est/images/swept/FDOT_Logo_color_transparent.png" alt="Florida Department of Transporation Logo" /></a>
+					<p><strong>Copyright &copy;2018 Florida Department of Transportation All Rights Reserved</strong><br />
+					<small>For additional information, please e-mail questions or comments to Florida Department of Transportation Office of Environmental Management (OEM) <a href="mailto:swept@fla-etat.org">swept@fla-etat.org</a> or call <a href="tel: 8504145334">850-414-5334</a></small>.
+				</div>
+			</div>
+		</footer>
 </body>
 </html>
