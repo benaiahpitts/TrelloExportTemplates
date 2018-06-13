@@ -12,9 +12,13 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
 </head>
 <body class="TrelloExport">
+{% set organizationName = '' %}
+{% set boardName = '' %}
+{% set prevList = '' %}
+
 	<nav class="navbar navbar-swept navbar-fixed-top">
 		<div class="navbar-accent" style="display: flex; align-items: center; justify-content: space-between;">
-			<strong>TrelloExport > </strong>
+			<strong>TrelloExport &gt; {% for card in data.cards %}{% if card.boardName != boardName %}{{ card.organizationName }} &gt; {{ card.boardName }}{% endif %}{% endfor %}</strong>
 		</div>		
     
       		<header class="container-fluid">
@@ -31,15 +35,9 @@
 			</div>
 			
 			<div id="main-content" class="col-lg-10 col-lg-offset-2">
-			{% data.cards|first %}
 			
-{% set organizationName = '' %}
-{% set boardName = '' %}
-{% set prevList = '' %}
+
 {% for card in data.cards %}
-     <!-- {% if card.boardName != boardName %}
-        <h2>{{ card.organizationName }} &gt;&gt; {{ card.boardName }}</h2>
-    {% endif %} -->
     {% set boardName = card.boardName %}
     {% set organizationName = card.organizationName %}
     {% set curList = card.listName %}
